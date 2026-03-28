@@ -1,0 +1,37 @@
+import streamlit as st
+from scanner.nmap_scanner import scan_target
+from threat_intel.shodan_api import get_shodan_info
+from threat_intel.virustotal_api import check_ip
+from risk.risk_engine import calculate_risk
+from reports.report_generator import generate_report
+
+st.set_page_config(page_title="Cyber Risk Platform", layout="wide")
+
+st.title("🛡️ Cyber Risk Assessment & Threat Intelligence")
+
+target = st.text_input("Enter Target IP or Domain")
+
+if st.button("Run Scan"):
+    if target:
+        with st.spinner("Scanning..."):
+            scan_results = scan_target(target)
+            shodan_data = get_shodan_info(target)
+            vt_data = check_ip(target)
+            risk = calculate_risk(scan_results, vt_data)
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.subheader("🔍 Scan Results")
+            st.json(scan_results)
+
+        with col2:
+            st.subheader("🌐 Threat Intelligence")
+            st.json(shodan_data)
+
+        st.subheader("⚠️ Risk Analysis")
+        st.write(risk)
+
+        if st.button("Generate PDF Report"):
+            generate_report(scan_results, risk)
+            st.success("Report saved as report.pdf")
