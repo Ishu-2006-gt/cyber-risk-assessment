@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+
+# Env
+.env
+
+# Reports
+*.pdf
+
+# OS
+.DS_Store
+
+# Streamlit
+.streamlit/
