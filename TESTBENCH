@@ -1,0 +1,10 @@
+from risk.risk_engine import calculate_risk
+
+def test_risk():
+    scan = [{"port": 21}, {"port": 80}]
+    threat = {"malicious": 2}
+
+    result = calculate_risk(scan, threat)
+
+    assert result["score"] > 0
+    assert result["level"] in ["LOW", "MEDIUM", "HIGH"]
