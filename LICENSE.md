@@ -1,0 +1,11 @@
+
+---
+
+# 📜 9. LICENSE (MIT)
+
+```text
+MIT License
+
+Copyright (c) 2026
+
+Permission is hereby granted...
