@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Starting Cyber Risk Platform..."
+streamlit run app/main.py
