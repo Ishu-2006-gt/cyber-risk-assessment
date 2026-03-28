@@ -1,0 +1,9 @@
+streamlit
+python-nmap
+requests
+pandas
+matplotlib
+shodan
+fpdf
+python-dotenv
+pytest
